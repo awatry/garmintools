@@ -583,7 +583,7 @@ garmin_read_a000_a001 ( garmin_unit * garmin )
 	  break;
 	case Tag_Appl_Prot_Id:
 	  memset(datatypes,0,size * sizeof(uint16));
-	  for ( j = i+1; p.packet.data[3*j] == Tag_Data_Type_Id; j++ ) {
+          for ( j = i+1; (j<=size) && (p.packet.data[3*j] == Tag_Data_Type_Id); j++ ) {
 	    datatypes[j-i-1] = get_uint16(p.packet.data + 3*j + 1);
 	  }
 	  garmin_assign_protocol(garmin,data,datatypes);
